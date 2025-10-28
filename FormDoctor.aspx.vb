@@ -80,22 +80,29 @@
     End Sub
 
     ' Seleccionar fila para cargar datos en los TextBox
+
+
+
     Protected Sub gvDoctores_SelectedIndexChanged(sender As Object, e As EventArgs)
         Try
             Dim row As GridViewRow = gvDoctores.SelectedRow
-            txtIDMedico.Text = gvDoctores.DataKeys(row.RowIndex).Value.ToString()
-            txtNombre.Text = row.Cells(2).Text
-            txtPrimerApellido.Text = row.Cells(3).Text
-            txtSegundoApellido.Text = row.Cells(4).Text
-            txtEspecialidad.Text = row.Cells(5).Text
-            txtTelefono.Text = row.Cells(6).Text
-            txtCorreo.Text = row.Cells(7).Text
-            txtCedula.Text = row.Cells(8).Text
-            editando.Value = txtIDMedico.Text
+
+            txtIDMedico.Text = HttpUtility.HtmlDecode(row.Cells(2).Text)
+            txtNombre.Text = HttpUtility.HtmlDecode(row.Cells(3).Text)
+            txtPrimerApellido.Text = HttpUtility.HtmlDecode(row.Cells(4).Text)
+            txtSegundoApellido.Text = HttpUtility.HtmlDecode(row.Cells(5).Text)
+            txtEspecialidad.Text = HttpUtility.HtmlDecode(row.Cells(6).Text)
+            txtTelefono.Text = HttpUtility.HtmlDecode(row.Cells(7).Text)
+            txtCorreo.Text = HttpUtility.HtmlDecode(row.Cells(8).Text)
+            txtCedula.Text = HttpUtility.HtmlDecode(row.Cells(9).Text)
+
+            editando.Value = gvDoctores.DataKeys(row.RowIndex).Value.ToString()
         Catch ex As Exception
             lblMensaje.Text = "Error al seleccionar: " & ex.Message
         End Try
     End Sub
+
+
 
     ' Botón para actualizar desde los TextBox
     Protected Sub btnActualizar_Click(sender As Object, e As EventArgs)

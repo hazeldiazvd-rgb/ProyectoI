@@ -115,18 +115,22 @@ Public Class FormPaciente
     End Sub
 
     ' SELECCIONAR PARA FORMULARIO
+
     Protected Sub gvPacientes_SelectedIndexChanged(sender As Object, e As EventArgs)
         Try
             Dim row As GridViewRow = gvPacientes.SelectedRow
-            txtCedulaPersona.Text = row.Cells(3).Text
-            txtIdDoctor.Text = row.Cells(4).Text
-            txtMotivoConsulta.Text = row.Cells(5).Text
-            txtDiagnostico.Text = row.Cells(6).Text
+
+            txtCedulaPersona.Text = CType(row.FindControl("lblCedula"), Label).Text
+            txtIdDoctor.Text = CType(row.FindControl("lblIdDoctor"), Label).Text
+            txtMotivoConsulta.Text = HttpUtility.HtmlDecode(CType(row.FindControl("lblMotivoConsulta"), Label).Text)
+            txtDiagnostico.Text = HttpUtility.HtmlDecode(CType(row.FindControl("lblDiagnostico"), Label).Text)
+
             editando.Value = gvPacientes.DataKeys(row.RowIndex).Value.ToString()
         Catch ex As Exception
             lblMensaje.Text = "Error al seleccionar: " & ex.Message
         End Try
     End Sub
+
     ' BOTÓN PARA ACTUALIZAR DESDE TEXTBOX
     Protected Sub btnActualizar_Click(sender As Object, e As EventArgs)
         Try

@@ -36,6 +36,45 @@
 
     End Sub
 
+    Protected Sub btnActualizar_Click(sender As Object, e As EventArgs)
+        Try
+            ' Validación
+            If String.IsNullOrWhiteSpace(txtTelefono.Text) OrElse Not IsNumeric(txtTelefono.Text) Then
+                lblMensaje.Text = "Teléfono debe ser numérico"
+                Exit Sub
+            End If
+
+            If String.IsNullOrWhiteSpace(txtEdad.Text) OrElse Not IsNumeric(txtEdad.Text) Then
+                lblMensaje.Text = "Edad debe ser numérica"
+                Exit Sub
+            End If
+
+            Dim persona As New Persona(
+            Convert.ToInt32(editando.Value),
+            txtNombre.Text,
+            txtPrimerApellido.Text,
+            txtSegundoApellido.Text,
+            Convert.ToInt32(txtTelefono.Text),
+            txtNacionalidad.Text,
+            Convert.ToInt32(txtEdad.Text),
+            txtCorreo.Text
+        )
+
+            If dbHelper.update(persona) Then
+                lblMensaje.Text = "Persona actualizada correctamente"
+                LimpiarCampos()
+            Else
+                lblMensaje.Text = "Error al actualizar la persona"
+            End If
+
+            gvPersonas.DataBind()
+            gvPersonas.EditIndex = -1
+        Catch ex As Exception
+            lblMensaje.Text = "Error: " & ex.Message
+        End Try
+    End Sub
+
+
     Protected Sub gvPersonas_RowDeleting(sender As Object, e As GridViewDeleteEventArgs)
         Try
             Dim cedula As Integer = Convert.ToInt32(gvPersonas.DataKeys(e.RowIndex).Value)
@@ -90,23 +129,25 @@
         e.Cancel = True
     End Sub
 
+
+
     Protected Sub gvPersonas_SelectedIndexChanged(sender As Object, e As EventArgs)
         Dim row As GridViewRow = gvPersonas.SelectedRow
         Dim cedula As String = gvPersonas.DataKeys(row.RowIndex).Value.ToString()
 
-        ' Asignar valores a los TextBox (ajusta los índices según el orden de tus columnas)
         txtCedula.Text = cedula
-        txtNombre.Text = row.Cells(2).Text
-        txtPrimerApellido.Text = row.Cells(3).Text
-        txtSegundoApellido.Text = row.Cells(4).Text
-        txtTelefono.Text = row.Cells(5).Text
-        txtNacionalidad.Text = row.Cells(6).Text
-        txtEdad.Text = row.Cells(7).Text
-        txtCorreo.Text = row.Cells(8).Text
+        txtNombre.Text = HttpUtility.HtmlDecode(row.Cells(3).Text)
+        txtPrimerApellido.Text = HttpUtility.HtmlDecode(row.Cells(4).Text)
+        txtSegundoApellido.Text = HttpUtility.HtmlDecode(row.Cells(5).Text)
+        txtTelefono.Text = HttpUtility.HtmlDecode(row.Cells(6).Text)
+        txtNacionalidad.Text = HttpUtility.HtmlDecode(row.Cells(7).Text)
+        txtEdad.Text = HttpUtility.HtmlDecode(row.Cells(8).Text)
+        txtCorreo.Text = HttpUtility.HtmlDecode(row.Cells(9).Text)
 
-        ' Guardar la cedula en el HiddenField para usarla en la actualización
         editando.Value = cedula
     End Sub
+
+
 
 
     Private Sub LimpiarCampos()
@@ -121,28 +162,5 @@
     End Sub
 
 
-
-    Protected Sub btnActualizar_Click(sender As Object, e As EventArgs)
-        Dim persona As New Persona(
-            Convert.ToInt32(editando.Value), ' Cedula como clave
-            txtNombre.Text,
-            txtPrimerApellido.Text,
-            txtSegundoApellido.Text,
-            Convert.ToInt32(txtTelefono.Text),
-            txtNacionalidad.Text,
-            Convert.ToInt32(txtEdad.Text),
-            txtCorreo.Text
-        )
-
-        If dbHelper.update(persona) Then
-            lblMensaje.Text = "Persona actualizada correctamente"
-            LimpiarCampos()
-        Else
-            lblMensaje.Text = "Error al actualizar la persona"
-        End If
-
-        gvPersonas.DataBind()
-        gvPersonas.EditIndex = -1
-    End Sub
 
 End Class
