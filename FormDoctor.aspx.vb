@@ -8,8 +8,6 @@
 
     End Sub
 
-
-    ' Guardar nuevo doctor
     Protected Sub btn_guardar_Click(sender As Object, e As EventArgs)
         Try
             doctor.IDMedico = Convert.ToInt32(txtIDMedico.Text)
@@ -34,7 +32,6 @@
         End Try
     End Sub
 
-    ' Eliminar doctor
     Protected Sub gvDoctores_RowDeleting(sender As Object, e As GridViewDeleteEventArgs)
         Try
             Dim idMedico As Integer = Convert.ToInt32(gvDoctores.DataKeys(e.RowIndex).Value)
@@ -50,7 +47,6 @@
         End Try
     End Sub
 
-    ' Actualizar desde edición en GridView
     Protected Sub gvDoctores_RowUpdating(sender As Object, e As GridViewUpdateEventArgs)
         Try
             Dim idMedico As Integer = Convert.ToInt32(gvDoctores.DataKeys(e.RowIndex).Value)
@@ -79,10 +75,6 @@
         End Try
     End Sub
 
-    ' Seleccionar fila para cargar datos en los TextBox
-
-
-
     Protected Sub gvDoctores_SelectedIndexChanged(sender As Object, e As EventArgs)
         Try
             Dim row As GridViewRow = gvDoctores.SelectedRow
@@ -102,9 +94,6 @@
         End Try
     End Sub
 
-
-
-    ' Botón para actualizar desde los TextBox
     Protected Sub btnActualizar_Click(sender As Object, e As EventArgs)
         Try
             Dim doctor As New Doctor(
@@ -132,7 +121,6 @@
         End Try
     End Sub
 
-    ' Métodos para edición en GridView (evitar errores)
     Protected Sub gvDoctores_RowEditing(sender As Object, e As GridViewEditEventArgs)
         gvDoctores.EditIndex = e.NewEditIndex
         gvDoctores.DataBind()
@@ -143,7 +131,6 @@
         gvDoctores.DataBind()
     End Sub
 
-    ' Limpiar campos
     Private Sub LimpiarCampos()
         txtIDMedico.Text = ""
         txtNombre.Text = ""

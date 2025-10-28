@@ -147,9 +147,6 @@
         editando.Value = cedula
     End Sub
 
-
-
-
     Private Sub LimpiarCampos()
         txtCedula.Text = ""
         txtNombre.Text = ""
@@ -160,7 +157,5 @@
         txtEdad.Text = ""
         txtCorreo.Text = ""
     End Sub
-
-
 
 End Class

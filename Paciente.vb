@@ -7,7 +7,6 @@
     Private _MotivoConsulta As String
     Private _Diagnostico As String
 
-    ' Constructor completo
     Public Sub New(idConsulta As Integer, cedulaPersona As Integer, idDoctor As Integer, motivoConsulta As String, diagnostico As String)
         Me.IdConsulta = idConsulta
         Me.CedulaPersona = cedulaPersona
@@ -16,16 +15,14 @@
         Me.Diagnostico = diagnostico
     End Sub
 
-    ' Constructor con solo IdConsulta
     Public Sub New(idConsulta As Integer)
         Me.IdConsulta = idConsulta
     End Sub
 
-    ' Constructor vacío
     Public Sub New()
+        ' Constructor vacío
     End Sub
 
-    ' Propiedades
     Public Property IdConsulta As Integer
         Get
             Return _IdConsulta
@@ -71,5 +68,10 @@
         End Set
     End Property
 
+    Public Sub New(idConsulta As Integer, motivoConsulta As String, diagnostico As String)
+        Me.IdConsulta = idConsulta
+        Me.MotivoConsulta = motivoConsulta
+        Me.Diagnostico = diagnostico
+    End Sub
 
 End Class

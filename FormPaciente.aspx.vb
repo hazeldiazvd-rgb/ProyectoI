@@ -50,8 +50,6 @@ Public Class FormPaciente
         End Try
     End Sub
 
-
-    ' GUARDAR NUEVO PACIENTE
     Protected Sub btnGuardar_Click(sender As Object, e As EventArgs)
         Try
             paciente.CedulaPersona = Convert.ToInt32(txtCedulaPersona.Text)
@@ -72,7 +70,6 @@ Public Class FormPaciente
         End Try
     End Sub
 
-    ' ELIMINAR PACIENTE
     Protected Sub gvPacientes_RowDeleting(sender As Object, e As GridViewDeleteEventArgs)
         Try
             Dim idConsulta As Integer = Convert.ToInt32(gvPacientes.DataKeys(e.RowIndex).Value)
@@ -88,7 +85,6 @@ Public Class FormPaciente
         End Try
     End Sub
 
-    ' ACTUALIZAR DESDE EDICIÓN EN GRIDVIEW
     Protected Sub gvPacientes_RowUpdating(sender As Object, e As GridViewUpdateEventArgs)
         Try
             Dim idConsulta As Integer = Convert.ToInt32(gvPacientes.DataKeys(e.RowIndex).Value)
@@ -114,16 +110,14 @@ Public Class FormPaciente
         End Try
     End Sub
 
-    ' SELECCIONAR PARA FORMULARIO
-
     Protected Sub gvPacientes_SelectedIndexChanged(sender As Object, e As EventArgs)
         Try
             Dim row As GridViewRow = gvPacientes.SelectedRow
 
-            txtCedulaPersona.Text = CType(row.FindControl("lblCedula"), Label).Text
-            txtIdDoctor.Text = CType(row.FindControl("lblIdDoctor"), Label).Text
-            txtMotivoConsulta.Text = HttpUtility.HtmlDecode(CType(row.FindControl("lblMotivoConsulta"), Label).Text)
-            txtDiagnostico.Text = HttpUtility.HtmlDecode(CType(row.FindControl("lblDiagnostico"), Label).Text)
+            txtCedulaPersona.Text = HttpUtility.HtmlDecode(row.Cells(3).Text)
+            txtIdDoctor.Text = HttpUtility.HtmlDecode(row.Cells(4).Text)
+            txtMotivoConsulta.Text = HttpUtility.HtmlDecode(row.Cells(5).Text)
+            txtDiagnostico.Text = HttpUtility.HtmlDecode(row.Cells(6).Text)
 
             editando.Value = gvPacientes.DataKeys(row.RowIndex).Value.ToString()
         Catch ex As Exception
@@ -131,16 +125,18 @@ Public Class FormPaciente
         End Try
     End Sub
 
-    ' BOTÓN PARA ACTUALIZAR DESDE TEXTBOX
     Protected Sub btnActualizar_Click(sender As Object, e As EventArgs)
         Try
+            If String.IsNullOrWhiteSpace(txtMotivoConsulta.Text) OrElse String.IsNullOrWhiteSpace(txtDiagnostico.Text) Then
+                lblMensaje.Text = "Debe ingresar motivo y diagnóstico"
+                Exit Sub
+            End If
+
             Dim paciente As New Paciente(
-                Convert.ToInt32(editando.Value),
-                Convert.ToInt32(txtCedulaPersona.Text),
-                Convert.ToInt32(txtIdDoctor.Text),
-                txtMotivoConsulta.Text,
-                txtDiagnostico.Text
-            )
+            Convert.ToInt32(editando.Value),
+            txtMotivoConsulta.Text,
+            txtDiagnostico.Text
+        )
 
             If dbHelper.updatePaciente(paciente) Then
                 lblMensaje.Text = "Paciente actualizado correctamente"
@@ -150,13 +146,11 @@ Public Class FormPaciente
             End If
 
             gvPacientes.DataBind()
-            gvPacientes.EditIndex = -1
         Catch ex As Exception
             lblMensaje.Text = "Error: " & ex.Message
         End Try
     End Sub
 
-    ' MÉTODOS PARA EDICIÓN EN GRIDVIEW
     Protected Sub gvPacientes_RowEditing(sender As Object, e As GridViewEditEventArgs)
         gvPacientes.EditIndex = e.NewEditIndex
         gvPacientes.DataBind()
@@ -167,7 +161,6 @@ Public Class FormPaciente
         gvPacientes.DataBind()
     End Sub
 
-    ' LIMPIAR CAMPOS
     Private Sub LimpiarCampos()
         txtCedulaPersona.Text = ""
         txtIdDoctor.Text = ""

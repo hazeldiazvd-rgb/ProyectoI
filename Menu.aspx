@@ -1,10 +1,10 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Menu.aspx.vb" 
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Menu.aspx.vb"
     Inherits="ProyectoI.Menu" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    
-    
-<style>
+
+
+    <style>
         .menu-container {
             background: #fff;
             padding: 40px;
@@ -15,11 +15,12 @@
             margin: 50px auto;
         }
 
-        .menu-container h2 {
-            color: #333;
-            margin-bottom: 30px;
-            font-size: 26px;
-        }
+            .menu-container h2 {
+                color: #333;
+                margin-bottom: 30px;
+                font-size: 26px;
+            }
+
 
         .menu-button {
             display: block !important;
@@ -28,25 +29,28 @@
             margin: 10px 0 !important;
             font-size: 18px !important;
             font-weight: bold !important;
-            color: #fff !important;
-            background-color: #007bff !important;
+            color: #fff !important; 
+            background-color: #000 !important; 
             border: none !important;
             border-radius: 8px !important;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
-        .menu-button:hover {
-            background-color: #0056b3 !important;
-            transform: scale(1.05);
-        }
+            .menu-button:hover {
+                background-color: #333 !important; 
+                transform: scale(1.05);
+            }
+
     </style>
 
 
     <div class="menu-container">
-    <h2>Seleccione el formulario</h2>
-    <asp:Button ID="btnDoctor" runat="server" Text="Doctor" OnClick="btnDoctor_Click" />
-    <asp:Button ID="btnPaciente" runat="server" Text="Paciente" OnClick="btnPaciente_Click" />
-    <asp:Button ID="btnPersona" runat="server" Text="Persona" OnClick="btnPersona_Click" />
+        <h2>Seleccione el formulario</h2>
+        <asp:Button ID="btnPersona" runat="server" Text="Persona" CssClass="menu-button" OnClick="btnPersona_Click" />
+        <asp:Button ID="btnDoctor" runat="server" Text="Doctor" CssClass="menu-button" OnClick="btnDoctor_Click" />
+        <asp:Button ID="btnPaciente" runat="server" Text="Paciente" CssClass="menu-button" OnClick="btnPaciente_Click" />
+        
     </div>
+
 </asp:Content>

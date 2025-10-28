@@ -83,8 +83,6 @@ Public Class DataBaseHelper
         End Try
     End Function
 
-
-    ' Crear Doctor
     Public Function createDoctor(ByVal doctor As Doctor) As Boolean
         Try
             Dim sql As String = "INSERT INTO Doctor (IDMedico, Nombre, PrimerApellido, SegundoApellido, Especialidad, Telefono, Correo, Cedula) 
@@ -113,7 +111,6 @@ Public Class DataBaseHelper
         End Try
     End Function
 
-    ' Eliminar Doctor
     Public Function deleteDoctor(ByVal idMedico As Integer) As Boolean
         Try
             Dim sql As String = "DELETE FROM Doctor WHERE IDMedico = @IDMedico"
@@ -134,7 +131,6 @@ Public Class DataBaseHelper
         End Try
     End Function
 
-    ' Actualizar Doctor
     Public Function updateDoctor(ByVal doctor As Doctor) As Boolean
         Try
             Dim sql As String = "UPDATE Doctor SET Nombre = @Nombre, PrimerApellido = @PrimerApellido, SegundoApellido = @SegundoApellido, 
@@ -164,8 +160,6 @@ Public Class DataBaseHelper
         End Try
     End Function
 
-
-    ' ---------------- MÉTODOS PARA PACIENTE ----------------
     Public Function createPaciente(p As Paciente) As Boolean
         Try
             Using con As New SqlConnection(ConnectionString)
@@ -187,10 +181,8 @@ Public Class DataBaseHelper
         Try
             Using con As New SqlConnection(ConnectionString)
                 con.Open()
-                Dim query As String = "UPDATE Paciente SET CedulaPersona=@CedulaPersona, IdDoctor=@IdDoctor, MotivoConsulta=@MotivoConsulta, Diagnostico=@Diagnostico WHERE IdConsulta=@IdConsulta"
+                Dim query As String = "UPDATE Paciente SET MotivoConsulta=@MotivoConsulta, Diagnostico=@Diagnostico WHERE IdConsulta=@IdConsulta"
                 Dim cmd As New SqlCommand(query, con)
-                cmd.Parameters.AddWithValue("@CedulaPersona", p.CedulaPersona)
-                cmd.Parameters.AddWithValue("@IdDoctor", p.IdDoctor)
                 cmd.Parameters.AddWithValue("@MotivoConsulta", p.MotivoConsulta)
                 cmd.Parameters.AddWithValue("@Diagnostico", p.Diagnostico)
                 cmd.Parameters.AddWithValue("@IdConsulta", p.IdConsulta)
