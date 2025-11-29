@@ -1,5 +1,5 @@
 ﻿
-<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="FormPaciente.aspx.vb" Inherits="ProyectoI.FormPaciente" %>
+<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="FormRegCita.aspx.vb" Inherits="ProyectoI.FormPaciente" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     

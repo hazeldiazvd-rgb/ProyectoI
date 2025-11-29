@@ -58,7 +58,7 @@ Public Class FormPaciente
             paciente.Diagnostico = txtDiagnostico.Text
 
             If dbHelper.createPaciente(paciente) Then
-                lblMensaje.Text = "Paciente creado correctamente"
+                lblMensaje.Text = "Registro creado correctamente"
                 LimpiarCampos()
             Else
                 lblMensaje.Text = "Error al crear el paciente"

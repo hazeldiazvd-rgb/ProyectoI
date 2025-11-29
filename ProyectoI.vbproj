@@ -146,7 +146,7 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="FormDoctor.aspx" />
-    <Content Include="FormPaciente.aspx" />
+    <Content Include="FormRegCita.aspx" />
     <Content Include="FormPersona.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Menu.aspx" />
@@ -218,7 +218,7 @@
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="BaseDatos\DataBaseHelper.vb" />
+    <Compile Include="Utils\DataBaseHelper.vb" />
     <Compile Include="Contact.aspx.designer.vb">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
@@ -226,6 +226,10 @@
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="db\dbDoctor.vb" />
+    <Compile Include="db\dbLogin.vb" />
+    <Compile Include="db\dbPersona.vb" />
+    <Compile Include="db\dbRegistroCita.vb" />
     <Compile Include="Default.aspx.vb">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Default.aspx</DependentUpon>
@@ -241,11 +245,11 @@
       <DependentUpon>FormDoctor.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="FormPaciente.aspx.designer.vb">
-      <DependentUpon>FormPaciente.aspx</DependentUpon>
+    <Compile Include="FormRegCita.aspx.designer.vb">
+      <DependentUpon>FormRegCita.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FormPaciente.aspx.vb">
-      <DependentUpon>FormPaciente.aspx</DependentUpon>
+    <Compile Include="FormRegCita.aspx.vb">
+      <DependentUpon>FormRegCita.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="FormPersona.aspx.designer.vb">
@@ -293,6 +297,8 @@
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Utils\Simple3Des.vb" />
+    <Compile Include="Utils\SwalUtils.vb" />
     <Compile Include="ViewSwitcher.ascx.vb">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

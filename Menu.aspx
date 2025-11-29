@@ -46,7 +46,8 @@
 
 
     <div class="menu-container">
-        <h2>Seleccione el formulario</h2>
+        <h2>Bienvenido</h2>
+        <h2>Seleccione una opción:</h2>
         <asp:Button ID="btnPersona" runat="server" Text="Persona" CssClass="menu-button" OnClick="btnPersona_Click" />
         <asp:Button ID="btnDoctor" runat="server" Text="Doctor" CssClass="menu-button" OnClick="btnDoctor_Click" />
         <asp:Button ID="btnPaciente" runat="server" Text="Paciente" CssClass="menu-button" OnClick="btnPaciente_Click" />

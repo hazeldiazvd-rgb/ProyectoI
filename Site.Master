@@ -47,9 +47,9 @@
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item"><a class="nav-link" runat="server" href="FormPersona">Persona</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="FormDoctor.aspx">Doctor</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="FormPaciente">Paciente</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="FormPersona">Persona</a></li>
                     </ul>
                 </div>
             </div>
@@ -59,7 +59,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Grupo 3 - Hazell Díaz y Sergio Murillo</p>
+                <p>&copy; <%: DateTime.Now.Year %> - Grupo L - Hazell Díaz y Sergio Murillo</p>
             </footer>
         </div>
     </form>
